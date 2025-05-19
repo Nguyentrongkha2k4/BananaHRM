@@ -5,7 +5,7 @@
   <a href="https://github.com/othneildrew/Best-README-Template">
     <img src="https://hcmut.edu.vn/img/nhanDienThuongHieu/01_logobachkhoasang.png" alt="Logo" width="30%" height="30%">
   </a>
-  <h1 align="center">HUMAN RESOURCE MANAGEMENT</h1>
+  <h1 align="center">BananaHRM</h1>
   <p align="center">
     This project provides a modern solution for managing employee information, leave requests, attendance, and task tracking within an organization. It is designed to be scalable, maintainable, and automation-ready through message queues and event-driven architecture.
     <br />
