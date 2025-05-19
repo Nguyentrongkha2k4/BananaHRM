@@ -5,7 +5,7 @@
   <a href="https://github.com/othneildrew/Best-README-Template">
     <img src="https://hcmut.edu.vn/img/nhanDienThuongHieu/01_logobachkhoasang.png" alt="Logo" width="30%" height="30%">
   </a>
-  <h2 align="center">HUMAN RESOURCE MANAGEMENT</h2>
+  <h1 align="center">HUMAN RESOURCE MANAGEMENT</h1>
   <p align="center">
     This project provides a modern solution for managing employee information, leave requests, attendance, and task tracking within an organization. It is designed to be scalable, maintainable, and automation-ready through message queues and event-driven architecture.
     <br />
@@ -20,13 +20,13 @@
 ## Additional Information
 This is a personal project built by a single developer. If there are any errors or issues, please feel free to forgive or contribute suggestions through the feedback link above. Thank you!
 
-## OVERVIEW
-### Background 
+# 📌 PROJECT OVERVIEW
+## 🔎 Background 
 In growing companies and organizations, managing human resources efficiently becomes critical. Traditional HR practices often lead to scattered data, repetitive tasks, and lack of transparency.
 
 This HR Management System aims to automate and digitalize common HR operations including employee records, leave applications, salary management, time tracking, and performance reviews.
 
-### Objectives
+## 🎯 Objectives
 - **Centralize HR Data:**
 Store and manage all employee information in one place with role-based access control.
 
@@ -42,7 +42,7 @@ Enable in-system notifications and optional email alerts (with n8n integration o
 - **Support Scalability:**
 Designed with modular architecture to support microservices, multi-threaded operations, and message queues for heavy load handling.
 
-### Features
+## ⚙️ Features
 - 👤 Employee Profile Management
 
 - 📆 Attendance & Leave Tracking
@@ -60,7 +60,7 @@ Designed with modular architecture to support microservices, multi-threaded oper
 - 📈 Admin Dashboards & Reports
 ### Funtion, non-function and diagrams
 
-### System architecture
+## 📚 System architecture
 - **Backend**: Java Spring Boot (REST APIs)
 
 - **Database**: MySQL
@@ -73,7 +73,7 @@ Designed with modular architecture to support microservices, multi-threaded oper
 
 - **Deployment**: Docker, Docker Compose, or Cloud-based (Heroku, AWS, etc.)
 
-## Công nghệ sử dụng
+## 🧱 Tech Stacks
 <a href=""><img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white" alt="Spring Boot" /></a>
 <a href="#"><img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="ReactJS" /></a>
 <a href=""><img src="https://img.shields.io/badge/MySQL-00758F?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL" /></a>
@@ -81,19 +81,18 @@ Designed with modular architecture to support microservices, multi-threaded oper
 <a href=""><img src="https://img.shields.io/badge/RabbitMQ-FF6600?style=for-the-badge&logo=rabbitmq&logoColor=white" alt="RabbitMQ" /></a>
 <a href=""><img src="https://img.shields.io/badge/n8n.io-DC143C?style=for-the-badge&logo=n8n&logoColor=white" alt="n8n" /></a>
 
-## Hướng dẫn sử dụng
-Xem hướng dẫn sử dụng:
+## 🚀 Getting Started
 
-## CI/CD
+## 🛠️ CI/CD
 
 
-## Deployment
+## 🌐 Deployment
 URL: 
 
-## TimeLine
+## 🕒 TimeLine
 
 
-## Liên hệ
+## 📫 Contact
 If you have any feedback, questions, or would like to contribute, feel free to reach out via:
 - 📧 Email: [trongkha08022k4@gmail.com](trongkha08022k4@gmail.com)
 
