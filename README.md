@@ -43,21 +43,121 @@ Enable in-system notifications and optional email alerts (with n8n integration o
 Designed with modular architecture to support microservices, multi-threaded operations, and message queues for heavy load handling.
 
 ## ⚙️ Features
-- 👤 Employee Profile Management
+### 1. Employee Information Management
+- Maintain detailed employee profiles (personal info, job details, emergency contacts, qualifications)
 
-- 📆 Attendance & Leave Tracking
+- Employee ID card and photo management
 
-- 💸 Payroll and Salary Slip Generation
+- Employee status (active, inactive, terminated)
 
-- 📊 Performance Appraisal System
+- Bulk employee import/export
 
-- 📥 Recruitment & Onboarding Management
+### 2. Leave & Time Management
+- Leave request submission and approval workflows
 
-- 📤 Email Notifications (via API or n8n integration)
+- Leave balance tracking per employee
 
-- 🔒 Role-Based Access Control
+- Public holidays and leave types management
 
-- 📈 Admin Dashboards & Reports
+- Attendance tracking and timesheets
+
+- Clock-in/out and biometric device integration (optional)
+
+- Work schedule and shift management
+
+### 3. Recruitment Module
+- Job vacancies management
+
+- Applicant tracking system (ATS)
+
+- Resume upload and parsing
+
+- Interview scheduling and feedback
+
+- Hiring workflow automation
+
+- Candidate status tracking
+
+### 4. Performance Management
+- Goal setting and tracking
+
+- Employee performance appraisals and reviews
+
+- 360-degree feedback collection
+
+- Competency and skill assessments
+
+- Performance improvement plans
+
+### 5. Payroll Management
+- Salary structure configuration (allowances, deductions, bonuses)
+
+- Payroll processing and payslip generation
+
+- Tax and compliance management
+
+- Integration with accounting software (optional)
+
+- Automated salary payments and bank integration (optional)
+
+### 6. Training & Development
+- Training course catalog and enrollment
+
+- Training session scheduling
+
+- Employee skill development tracking
+
+- Certifications management
+
+### 7. Benefits & Compensation
+- Manage employee benefits and insurance
+
+- Compensation planning and adjustments
+
+- Incentive and bonus management
+
+### 8. Employee Self-Service Portal
+- View personal profile and update non-critical info
+
+- Submit leave requests and track status
+
+- Access payslips and tax documents
+
+- Apply for training sessions
+
+- View company announcements and policies
+
+### 9. Admin & Security
+- Role-based access control and user management
+
+- Audit logs and activity tracking
+
+- Multi-factor authentication support
+
+- Data encryption and compliance features (GDPR, HIPAA, etc.)
+
+### 10. Reports & Analytics
+- Customizable reports (employee demographics, attendance, turnover)
+
+- Payroll summaries and tax reports
+
+- Performance reports and dashboards
+
+- Export reports to PDF, Excel formats
+
+### 11. Organization Management
+- Define departments, locations, job titles
+
+- Organizational hierarchy charts
+
+- Employee reporting structure
+
+### 12. Workflow Automation
+- Automated notifications and alerts (email, SMS, in-app)
+
+- Approval chains for leave, recruitment, payroll, etc.
+
+- Integration with third-party tools (e.g., n8n, message queues)
 ### Funtion, non-function and diagrams
 
 ## 📚 System architecture
