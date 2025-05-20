@@ -159,6 +159,8 @@ Designed with modular architecture to support microservices, multi-threaded oper
 
 - Integration with third-party tools (e.g., n8n, message queues)
 ### Funtion, non-function and diagrams
+#### 1. EERD
+Link: [tại đây](https://drive.google.com/file/d/1MpNoGfVZHMCCTC8nlX98Uq1pxhE8Aj06/view?usp=sharing)
 
 ## 📚 System architecture
 - **Backend**: Java Spring Boot (REST APIs)
