@@ -1,4 +1,31 @@
 spring:
     application:
         name: BananaHRM
+    datasource:
+        url: ${DB_URL}
+        username: ${DB_USERNAME}
+        password: ${DB_PASSWORD}
+        driver-class-name: com.mysql.cj.jdbc.Driver 
+    jpa:
+        hibernate:
+            ddl-auto: update
+        show-sql: true
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQLDialect
+    mvc:
+        hiddenmethod:
+            filter:
+                enabled: true
+server:
+  port: 8080
+  servlet:
+    context-path: /api
 
+adafruit:
+    username: ${ADA_USERNAME}
+    adaaccess: ${ADA_API_KEY}
+    broker: ${ADA_BROKER}
+jwt:
+    secret_key: ${JWT_SECRET}
+    expirationtime: 86400
