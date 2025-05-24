@@ -3,6 +3,7 @@ package com.bananahrm.hrms.Entity;
 import java.time.LocalTime;
 import java.util.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,12 +29,15 @@ public class Attendance {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     Long id;
 
-    Long employee_id;
+    @Column(name="employee_id")
+    Long employeeId;
 
     @Past(message="DATE_ATTENDANCE_INVALID")
     Date date;
 
+    @Column(name="clock_in")
     LocalTime clockIn;
 
+    @Column(name="clock_out")
     LocalTime clockOut;
 }

@@ -2,6 +2,7 @@ package com.bananahrm.hrms.Entity;
 
 import java.util.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,12 +31,16 @@ public class Employee {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     Long id;
 
-    Long jobTitle_id;
+    @Column(name="job_title_id")
+    Long jobTitleId;
 
-    Long department_id;
+    @Column(name="department_id")
+    Long departmentId;
 
+    @Column(name="last_name")
     String lastName;
 
+    @Column(name="first_name")
     String firstName;
 
     @Past(message="DOB_INVALID")

@@ -17,15 +17,18 @@ spring:
         hiddenmethod:
             filter:
                 enabled: true
+    data:
+        redis: 
+            host: ${REDIS_HOST:localhost}
+            port: ${REDIS_PORT:6379}
+    cache:
+        type: redis
+
 server:
   port: 8080
   servlet:
     context-path: /api
-
-adafruit:
-    username: ${ADA_USERNAME}
-    adaaccess: ${ADA_API_KEY}
-    broker: ${ADA_BROKER}
 jwt:
     secret_key: ${JWT_SECRET}
-    expirationtime: 86400
+    expirationtime: 86400               #1 day
+    refreshexpirationtime: 2592000      #30 days

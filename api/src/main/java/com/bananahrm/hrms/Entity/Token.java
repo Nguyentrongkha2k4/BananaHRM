@@ -8,37 +8,43 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.FieldDefaults;
 
 @Entity
-@Table(name="pay_rolls")
+@Table(name="tokens")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-@FieldDefaults(level=AccessLevel.PRIVATE)
-public class PayRoll {
+public class Token {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     Long id;
 
-    @Column(name="employee_id")
-    Long employeeId;
+    @Column(name="user_id")
+    Long userId;
 
-    Long salary;
+    String token;
 
-    Long bonus;
+    @Column(name="token_type")
+    String tokenType;
 
-    Long deductions;
+    @Column(name="is_mobile")
+    boolean isMobile;
 
-    @Column(name="period_start")
-    Date periodStart;
+    @Column(name="expiration_date")
+    Date expirationDate;
 
-    @Column(name="period_end")
-    Date periodEnd;
+    boolean revoked;
+
+    boolean expired;
+
+    @Column(name="refresh_token")
+    String refreshToken;
+
+    @Column(name="refresh_expiration_date")
+    Date refreshExpirationDate;
 }

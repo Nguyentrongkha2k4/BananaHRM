@@ -2,6 +2,7 @@ package com.bananahrm.hrms.Entity;
 
 import java.util.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,10 +27,13 @@ public class PerformanceReview {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     Long id;
 
-    Long employee_id;
+    @Column(name="emloyee_id")
+    Long employeeId;
 
-    Long byEmployee_id;
+    @Column(name="by_emloyee_id")
+    Long byEmployeeId;
 
+    @Column(name="review_date")
     Date reviewDate;
 
     int score;
