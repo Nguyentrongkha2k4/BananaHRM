@@ -1,5 +1,5 @@
 services:
-  api:
+  be-bananahrm:
     build:
       context: ./api
       dockerfile: Dockerfile
@@ -23,6 +23,18 @@ services:
     networks:
       - bananahrm-networks
 
+  fe-bananahrm:
+    build:
+      context: ./fe
+      dockerfile: Dockerfile
+    container_name: hrm_fe
+    ports: 
+      - "3000:3000"
+    env_file:
+      - ./fe/.env
+    restart: always
+    networks:
+      - bananahrm-networks
 networks:
   bananahrm-networks:
     driver: bridge
