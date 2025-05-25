@@ -1,5 +1,6 @@
 package com.bananahrm.hrms.Entity;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
 
@@ -36,8 +37,8 @@ public class Attendance {
     Date date;
 
     @Column(name="clock_in")
-    LocalTime clockIn;
+    LocalDateTime clockIn;
 
     @Column(name="clock_out")
-    LocalTime clockOut;
+    LocalDateTime clockOut;
 }

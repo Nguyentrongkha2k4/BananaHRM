@@ -11,8 +11,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.bananahrm.hrms.Entity.User;
-import com.bananahrm.hrms.Exception.AppException;
-import com.bananahrm.hrms.Exception.ErrorCode;
 import com.nimbusds.jose.JWSAlgorithm;
 import com.nimbusds.jose.JWSHeader;
 import com.nimbusds.jose.JWSObject;

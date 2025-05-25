@@ -1,11 +1,9 @@
-package com.bananahrm.hrms.Service.authentication;
+package com.bananahrm.hrms.Service.user;
 
 import java.util.Optional;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.bananahrm.hrms.Component.jwtAuthentication;
 import com.bananahrm.hrms.Entity.User;
 import com.bananahrm.hrms.Exception.AppException;
 import com.bananahrm.hrms.Exception.ErrorCode;
@@ -15,13 +13,12 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class AuthService implements IAuthService{
+public class UserService implements IUserService{
+
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
-    private final jwtAuthentication jwtAuthen;
 
     @Override
-    public String login(String username, String password) throws Exception{
+    public User getUserByUsername(String username) throws Exception {
         Optional<User> optionalUser = userRepository.findByMaNhanVien(username);
         
         if(optionalUser.isEmpty()){
@@ -30,13 +27,7 @@ public class AuthService implements IAuthService{
 
         User existsUser = optionalUser.get();
 
-        if(!passwordEncoder.matches(password, existsUser.getPassword())){
-            throw new AppException(ErrorCode.PASSWORD_WRONG);
-        }
-
-        String token = jwtAuthen.generateToken(existsUser);
-        
-        return token;
+        return existsUser;
     }
-
+    
 }

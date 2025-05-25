@@ -1,5 +1,6 @@
 package com.bananahrm.hrms.Entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -36,7 +37,7 @@ public class Token {
     boolean isMobile;
 
     @Column(name="expiration_date")
-    Date expirationDate;
+    LocalDateTime expirationDate;
 
     boolean revoked;
 
@@ -46,5 +47,5 @@ public class Token {
     String refreshToken;
 
     @Column(name="refresh_expiration_date")
-    Date refreshExpirationDate;
+    LocalDateTime refreshExpirationDate;
 }

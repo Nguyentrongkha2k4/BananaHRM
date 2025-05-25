@@ -1,5 +1,7 @@
 package com.bananahrm.hrms.Entity;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -34,10 +36,10 @@ public class LeaveRequest {
     Long leaveTypeId;
 
     @Column(name="from_date")
-    Date fromDate;
+    LocalDate fromDate;
 
     @Column(name="to_date")
-    Date toDate;
+    LocalDate toDate;
 
     String reason;
 

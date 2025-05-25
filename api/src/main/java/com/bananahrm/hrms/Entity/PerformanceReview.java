@@ -1,5 +1,6 @@
 package com.bananahrm.hrms.Entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -34,7 +35,7 @@ public class PerformanceReview {
     Long byEmployeeId;
 
     @Column(name="review_date")
-    Date reviewDate;
+    LocalDateTime reviewDate;
 
     int score;
 

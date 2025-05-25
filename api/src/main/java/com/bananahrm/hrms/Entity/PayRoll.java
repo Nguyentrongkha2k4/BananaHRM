@@ -1,5 +1,6 @@
 package com.bananahrm.hrms.Entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -37,8 +38,8 @@ public class PayRoll {
     Long deductions;
 
     @Column(name="period_start")
-    Date periodStart;
+    LocalDateTime periodStart;
 
     @Column(name="period_end")
-    Date periodEnd;
+    LocalDateTime periodEnd;
 }

@@ -8,7 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bananahrm.hrms.DTO.request.LoginRequest;
 import com.bananahrm.hrms.DTO.response.LoginResponse;
 import com.bananahrm.hrms.DTO.response.ResponseObject;
+import com.bananahrm.hrms.Entity.Token;
+import com.bananahrm.hrms.Entity.User;
 import com.bananahrm.hrms.Service.authentication.IAuthService;
+import com.bananahrm.hrms.Service.token.ITokenService;
+import com.bananahrm.hrms.Service.user.IUserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,15 +22,25 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AuthController {
     private final IAuthService authService;
+    private final ITokenService tokenService;
+    private final IUserService userService;
 
     @PostMapping("/login")
-    public ResponseObject<LoginResponse> postMethodName(@RequestBody LoginRequest request) {
+    public ResponseObject<LoginResponse> postMethodName(@RequestBody LoginRequest request) throws Exception {
         try {
-            // String token = authService;
+            String token = authService.login(request.getUsername(), request.getPassword());
+            
+            User user = userService.getUserByUsername(request.getUsername());
+
+            Token jwtToken = tokenService.addToken(user, token);
+
             return ResponseObject.<LoginResponse>builder()
                         .status(200)
                         .message("Login success")
-                        // .data(LoginResponse.builder().token(token).refresh_token(token).build())
+                        .data(LoginResponse.builder()
+                                    .token(jwtToken.getToken())
+                                    .refresh_token(jwtToken.getRefreshToken())
+                                    .build())
                         .build();     
         } catch (Exception e) {
             throw e;

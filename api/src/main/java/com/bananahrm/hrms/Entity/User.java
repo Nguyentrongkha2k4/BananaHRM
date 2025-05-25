@@ -1,5 +1,6 @@
 package com.bananahrm.hrms.Entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,7 +28,8 @@ public class User {
 
     Long employeeId;
 
-    String username;
+    @Column(name="ma_nhan_vien", unique=true)
+    String maNhanVien;
 
     @Pattern(regexp="ADMIN|HR|EMP", message="ROLE_INVALID")
     String role;
