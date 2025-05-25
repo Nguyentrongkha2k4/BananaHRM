@@ -1,6 +1,28 @@
 import { UUID } from 'crypto';
 
 
+
+
+export interface LoginRequest{
+    username: string,
+    password: string
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export interface ConfirmPayload {
     orderId: string,
     requestId: string,

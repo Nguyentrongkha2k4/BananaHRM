@@ -18,8 +18,8 @@ export function CredentialsForm(props: CredentialsFormProps) {
     const router = useRouter();
     const [error, setError] = useState<string | null>(null);
     const [formData, setFormData] =useState<formData>({
-		username: "tantai",
-    	password: "@hcmut.edu.vn"
+		username: "admin",
+    	password: "admin"
 	}
 	)
 	const t= useTranslations("LogPage")
@@ -36,12 +36,12 @@ export function CredentialsForm(props: CredentialsFormProps) {
         const { username, password } = formData;
         const Auth = new AuthOperation()
 		toast.promise(
-			Auth.login({ username: username, password:  password, role: "ADMIN" }),{
+			Auth.login({ username: username, password:  password}),{
 			loading: 'Loading...',
 			success: (data) => {
 				Cookies.set("gid", data.data.token)
-				
-				router.push("/printer")
+				Cookies.set("refresh_token", data.data.refreshToken)
+				router.push("/")
 				if (data.status !== 200)
 					throw new Error(data.message)
 				return data.message;
@@ -91,7 +91,7 @@ export function CredentialsForm(props: CredentialsFormProps) {
 						name="password"
 						id="password"
 						type={type}
-						className=" peer h-10 w-full border-b-2 bg-transparent  border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-sky-700"
+						className=" peer h-10 w-full border-b-2 bg-transparent border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-sky-700"
 						placeholder=""
 						value={formData.password}
 						onChange={(e) => {
@@ -106,7 +106,7 @@ export function CredentialsForm(props: CredentialsFormProps) {
 					/>		
 					<label
 						htmlFor="password"
-						className="absolute left-0 -top-5 text-gray-600 text-xs sm:text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">
+						className="absolute left-0 -top-5 text-gray-600 text-xs sm:text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-gray-600 peer-focus:text-sm">
 						Password
 					</label>
 					{type === "text" ? 
@@ -121,10 +121,11 @@ export function CredentialsForm(props: CredentialsFormProps) {
 			</div>
 			<p className="text-red-500  mt-5 text-xxs sm:text-sm">{error}</p>
 			<button
-				className="mt-5 relative bg-blue-900 px-4 py-2 rounded-full w-2/3 text-white text-sm md:text-xl"
+				className="mt-5 relative bg-yellow-400 px-4 py-2 rounded-full w-full text-gray-700 hover:text-black hover:bg-yellow-500 text-sm md:text-xl"
 				onClick={()=>{}}>
 				{t("login")}
 			</button>
+			
 		</form>
 	);
 }

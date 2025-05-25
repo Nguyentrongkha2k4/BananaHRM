@@ -21,9 +21,9 @@ public class TokenService implements ITokenService{
     private static final int MAX_TOKEN = 3;
 
     @Value("${jwt.expirationtime}")
-    private final long EXPIRATION_TIME;
+    private long EXPIRATION_TIME;
     @Value("${jwt.refreshexpirationtime}")
-    private final long REFRESH_EXPIRATION_TIME;
+    private long REFRESH_EXPIRATION_TIME;
 
     private final TokenRepository tokenRepository;
     private final AuthRedisService authRedisService;
