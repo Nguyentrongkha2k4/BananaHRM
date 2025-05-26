@@ -2,9 +2,13 @@
   "title": "Homepage",
   "login":"Login",
   "navigation": {
-    "home": "Home",
-    "online_test": "Print",
-    "notes": "Buy pages",
+    "home": "Dashboard",
+    "my_info": "Print",
+    "performance": "Performance",
+    "leave": "Leave",
+    "pim": "PIM",
+    "attendance": "Attendance",
+    "claim": "Claim",
     "news": "Support"
   },
   "LocaleSwitcher": {

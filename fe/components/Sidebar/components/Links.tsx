@@ -5,14 +5,16 @@ import { usePathname } from 'next/navigation';
 import { motion, Variants } from "framer-motion";
 import DashIcon from "@/components/Icon/DashIcon";
 import { useUserContext } from "@/providers/LoggedInProvider";
-import { FaChartPie, FaRegNewspaper, FaRegWindowRestore } from "react-icons/fa6";
+import { FaChartPie, FaRegChartBar, FaRegNewspaper, FaRegUser, FaRegWindowRestore } from "react-icons/fa6";
 import { useTranslations } from "next-intl";
 import { useSession } from "@/providers/SessionProvider";
-import { IoHomeSharp, IoLibrary } from "react-icons/io5";
+import { IoCalendar, IoHomeSharp, IoLibrary, IoPeopleSharp } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 import { LogOutIcon } from "lucide-react";
 import Cookies from 'js-cookie';
 import { useRouter } from "next/navigation";
+import { MdOutlineEventNote } from "react-icons/md";
+import { BsClipboardCheck } from "react-icons/bs";
 type Props = {
   onClickRoute?: (e: MouseEvent<HTMLElement>) => any | any
 }
@@ -34,22 +36,44 @@ export function SidebarLinks({ onClickRoute }: Props) {
       name: t("home"),
       path: "/",
       icon: <IoHomeSharp className="h-5 w-5 ml-0.5" />,
-      type:"home",
-      
+      type: "home",
     },
     {
-      name: t("online_test"),
-      path: "/print",
-      icon: <IoLibrary className="h-6 w-6" />,
-      type:"online_test",
+      name: t("my_info"),
+      path: "/profile",
+      icon: <FaRegUser className="h-5 w-5 ml-0.5" />,
+      type: "my_info",
     },
     {
-      name: t("notes"),
-      path: "/buypage",
-      icon: <FaRegWindowRestore className="h-5 w-5 ml-0.5" />,
-      type:"notes",
-      
-    }
+      name: t("performance"),
+      path: "/performanceReview",
+      icon: <FaRegChartBar className="h-5 w-5 ml-0.5" />,
+      type: "performance",
+    },
+    {
+      name: t("leave"),
+      path: "/leave",
+      icon: <IoCalendar className="h-5 w-5 ml-0.5" />,
+      type: "leave",
+    },
+    {
+      name: t("pim"),
+      path: "/pim",
+      icon: <IoPeopleSharp className="h-5 w-5 ml-0.5" />,
+      type: "pim",
+    },
+    {
+      name: t("attendance"),
+      path: "/attendance",
+      icon: <MdOutlineEventNote className="h-5 w-5 ml-0.5" />,
+      type: "attendance",
+    },
+    {
+      name: t("claim"),
+      path: "/claim",
+      icon: <BsClipboardCheck className="h-5 w-5 ml-0.5" />,
+      type: "claim",
+    },
   ];
   const Protectedroutes = [
     {
@@ -175,6 +199,7 @@ export function SidebarLinks({ onClickRoute }: Props) {
                 animate="animate"
                 transition={{ duration: 0.3, delay: 0.5 * (managementIndex) }}
                 className="relative mb-3 flex hover:cursor-pointer active:bg-red-500"
+                
               >
                 <li
                   className="my-[3px] flex cursor-pointer items-center px-8"

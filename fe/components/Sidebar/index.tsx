@@ -23,7 +23,7 @@ const Sidebar: FC<Props> = () => {
         flex-col bg-white shadow-2xl items-center justify-center shadow-white/5 transition-all
         ${openSidebar ? "translate-x-0" : "-translate-x-96"}`}
       >
-        <span className="absolute top-2 right-2 block cursor-pointer xl:hidden text-black" 
+        <span className="absolute z-50 top-2 right-2 block cursor-pointer xl:hidden text-black" 
         onClick={() => setOpenSidebar(false)} >
           <HiX size={20}/>
         </span>
