@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.bananahrm.hrms.Entity.Token;
 import com.bananahrm.hrms.Entity.User;
 import com.bananahrm.hrms.Rerpository.TokenRepository;
-import com.bananahrm.hrms.Service.authRedis.AuthRedisService;
+import com.bananahrm.hrms.Service.authRedis.IAuthRedisService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -26,7 +26,7 @@ public class TokenService implements ITokenService{
     private long REFRESH_EXPIRATION_TIME;
 
     private final TokenRepository tokenRepository;
-    private final AuthRedisService authRedisService;
+    private final IAuthRedisService iAuthRedisService;
 
     @Override
     public Token addToken(User user, String token) throws Exception {
@@ -38,8 +38,8 @@ public class TokenService implements ITokenService{
 
             tokenRepository.delete(tokenDelete);
 
-            authRedisService.revokeAccessToken(tokenDelete.getToken());
-            authRedisService.revokeRefreshToken(tokenDelete.getRefreshToken());
+            iAuthRedisService.revokeAccessToken(tokenDelete.getToken());
+            iAuthRedisService.revokeRefreshToken(tokenDelete.getRefreshToken());
         }
 
         long expirationInSeconds = EXPIRATION_TIME;
@@ -59,6 +59,8 @@ public class TokenService implements ITokenService{
         newToken.setRefreshToken(refreshToken);
         newToken.setRefreshExpirationDate(LocalDateTime.now().plusSeconds(refreshExpirationTime));
 
+        iAuthRedisService.saveAccessToken(token, user.getId(), expirationInSeconds);
+        iAuthRedisService.saveRefreshToken(refreshToken, user.getId(), refreshExpirationTime);
         return tokenRepository.save(newToken);
 
     }

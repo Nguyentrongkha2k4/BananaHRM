@@ -2,6 +2,7 @@ package com.bananahrm.hrms.Exception;
 
 import org.apache.catalina.User;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -30,22 +31,22 @@ public class GlobalExceptionHandler {
                             .build());
     }
 
-    // @SuppressWarnings("null")
-    // @ExceptionHandler(value = MethodArgumentNotValidException.class)
-    // ResponseEntity<ResponseObject<User>> handlerMethodArgumentNotValidException(MethodArgumentNotValidException e){
-    //     String key = e.getFieldError().getDefaultMessage();
+    @SuppressWarnings("null")
+    @ExceptionHandler(value = MethodArgumentNotValidException.class)
+    ResponseEntity<ResponseObject<User>> handlerMethodArgumentNotValidException(MethodArgumentNotValidException e){
+        String key = e.getFieldError().getDefaultMessage();
 
-    //     ErrorCode errorCode = ErrorCode.INVALID_KEY;
-    //     try{
-    //         errorCode = ErrorCode.valueOf(key);
-    //     }catch(IllegalArgumentException exception){
-    //         //log error
-    //     }
-    //     return ResponseEntity.badRequest().body(ResponseObject.<User>builder()
-    //                         .status(400)
-    //                         .message(errorCode.getMessage())
-    //                         .build());
-    // }
+        ErrorCode errorCode = ErrorCode.INVALID_KEY;
+        try{
+            errorCode = ErrorCode.valueOf(key);
+        }catch(IllegalArgumentException exception){
+            //log error
+        }
+        return ResponseEntity.badRequest().body(ResponseObject.<User>builder()
+                            .status(400)
+                            .message(errorCode.getMessage())
+                            .build());
+    }
     
     // @ExceptionHandler(value = JOSEException.class)
     // ResponseEntity<ResponseObject<User>> handlerJOSEEException(JOSEException e){
