@@ -43,6 +43,7 @@ public class AuthController {
                                     .build())
                         .build();     
         } catch (Exception e) {
+            
             throw e;
         }
     }
