@@ -2,6 +2,7 @@ package com.bananahrm.hrms.Service.authRedis;
 
 import java.time.Duration;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AuthRedisService implements IAuthRedisService{
     private final RedisTemplate<String, Object> redisTemplate;
+
+    @Value("${redis_var.login_limit}")
+    private int LOGIN_LIMIT;
+    @Value("${redis_var.time_exceed}")
+    private int TIME_EXCEED;
 
     @Override
     public void clear() throws Exception{
@@ -60,4 +66,27 @@ public class AuthRedisService implements IAuthRedisService{
         throw new UnsupportedOperationException("Unimplemented method 'deleteTokenForUser'");
     }
 
+    @Override
+    public boolean checkLoginFail(String username) throws Exception{
+        String key = "login_fail:" + username;
+        String value = (String) redisTemplate.opsForValue().get(key);
+
+        if (value == null) return false;
+
+        int attempts = Integer.parseInt(value);
+        return attempts >= LOGIN_LIMIT;
+    };
+
+    @Override
+    public void handleLoginFail(String username) throws Exception{
+        String key = "login_fail:" + username;
+        Long count = redisTemplate.opsForValue().increment(key);
+
+        // set ttl time when login fail and initializing
+        // if (count != null && count == 1){
+        redisTemplate.expire(key, Duration.ofSeconds(TIME_EXCEED));
+        // }else{
+        //     redisTemplate.expire(key, Duration.ofSeconds(TIME_EXCEED))
+        // }
+    };
 }

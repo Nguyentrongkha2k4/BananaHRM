@@ -32,3 +32,7 @@ jwt:
     secret_key: ${JWT_SECRET}
     expirationtime: 86400               #1 day
     refreshexpirationtime: 2592000      #30 days
+
+redis_var:
+    login_limit: 5
+    time_exceed: 300

@@ -19,6 +19,7 @@ public enum ErrorCode {
     NUMBER_ERROR("PhoneNumber is invalid format."),
     STATUS_INVALID("Status is invalid."),
     IDENTIFY_ERROR("Identify is invalid format."),
+    LOGIN_LIMIT("Login is limited"),
     ;
     private String message;
 

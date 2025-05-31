@@ -33,5 +33,15 @@
     "name": "jwt.refreshexpirationtime",
     "type": "java.lang.String",
     "description": "A description for 'jwt.refreshexpirationtime'"
+  },
+  {
+    "name": "redis_var.login_limit",
+    "type": "java.lang.String",
+    "description": "A description for 'redis_var.login_limit'"
+  },
+  {
+    "name": "redis_var.time_exceed",
+    "type": "java.lang.String",
+    "description": "A description for 'redis_var.time_exceed'"
   }
 ]}

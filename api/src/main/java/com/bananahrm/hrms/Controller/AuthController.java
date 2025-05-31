@@ -10,6 +10,9 @@ import com.bananahrm.hrms.DTO.response.LoginResponse;
 import com.bananahrm.hrms.DTO.response.ResponseObject;
 import com.bananahrm.hrms.Entity.Token;
 import com.bananahrm.hrms.Entity.User;
+import com.bananahrm.hrms.Exception.AppException;
+import com.bananahrm.hrms.Exception.ErrorCode;
+import com.bananahrm.hrms.Service.authRedis.IAuthRedisService;
 import com.bananahrm.hrms.Service.authentication.IAuthService;
 import com.bananahrm.hrms.Service.token.ITokenService;
 import com.bananahrm.hrms.Service.user.IUserService;
@@ -24,10 +27,14 @@ public class AuthController {
     private final IAuthService authService;
     private final ITokenService tokenService;
     private final IUserService userService;
+    private final IAuthRedisService iAuthRedisService;
 
     @PostMapping("/login")
     public ResponseObject<LoginResponse> postMethodName(@RequestBody LoginRequest request) throws Exception {
         try {
+            if(iAuthRedisService.checkLoginFail(request.getUsername())){
+                throw new AppException(ErrorCode.LOGIN_LIMIT);
+            }
             String token = authService.login(request.getUsername(), request.getPassword());
             
             User user = userService.getUserByUsername(request.getUsername());
@@ -43,7 +50,7 @@ public class AuthController {
                                     .build())
                         .build();     
         } catch (Exception e) {
-            
+            iAuthRedisService.handleLoginFail(request.getUsername());
             throw e;
         }
     }
