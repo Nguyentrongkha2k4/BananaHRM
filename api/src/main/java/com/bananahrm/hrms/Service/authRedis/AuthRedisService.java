@@ -69,11 +69,12 @@ public class AuthRedisService implements IAuthRedisService{
     @Override
     public boolean checkLoginFail(String username) throws Exception{
         String key = "login_fail:" + username;
-        String value = (String) redisTemplate.opsForValue().get(key);
+        Object value = redisTemplate.opsForValue().get(key);
 
         if (value == null) return false;
 
-        int attempts = Integer.parseInt(value);
+
+        int attempts = Integer.parseInt(String.valueOf(value));
         return attempts >= LOGIN_LIMIT;
     };
 
