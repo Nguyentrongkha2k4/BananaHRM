@@ -4,5 +4,6 @@ import com.bananahrm.hrms.Entity.Token;
 import com.bananahrm.hrms.Entity.User;
 
 public interface ITokenService {
-    Token addToken(User user, String token) throws Exception;
+    public Token addToken(User user, String token) throws Exception;
+    public void logout(String accessToken, String refreshToken) throws Exception;
 }

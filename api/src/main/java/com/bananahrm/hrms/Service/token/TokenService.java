@@ -65,4 +65,8 @@ public class TokenService implements ITokenService{
 
     }
 
+    @Override
+    public void logout(String accessToken, String refreshToken) throws Exception{
+        iAuthRedisService.logout(accessToken, refreshToken, EXPIRATION_TIME, REFRESH_EXPIRATION_TIME);
+    };
 }

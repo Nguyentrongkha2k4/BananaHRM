@@ -11,4 +11,5 @@ public interface IAuthRedisService {
     public void deleteTokenForUser(Long userId) throws Exception;
     public boolean checkLoginFail(String username) throws Exception;
     public void handleLoginFail(String username) throws Exception;
+    public void logout(String accessToken, String refreshToken, long accessTtl, long refreshTtl) throws Exception;
 }

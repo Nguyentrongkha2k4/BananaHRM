@@ -1,6 +1,7 @@
 package com.bananahrm.hrms.Service.authRedis;
 
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -89,5 +90,16 @@ public class AuthRedisService implements IAuthRedisService{
         // }else{
         //     redisTemplate.expire(key, Duration.ofSeconds(TIME_EXCEED))
         // }
+    }
+
+    @Override
+    public void logout(String accessToken, String refreshToken, long accessTtl, long refreshTtl) throws Exception {
+        String accessKey = "blacklist:" + accessToken;
+        String refreshKey = "blacklist:" + refreshToken;
+        redisTemplate.opsForValue().set(accessKey, "true", accessTtl, TimeUnit.SECONDS);
+
+        redisTemplate.opsForValue().set(refreshKey, "true", refreshTtl, TimeUnit.SECONDS);
     };
+
+    
 }

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bananahrm.hrms.DTO.request.LoginRequest;
+import com.bananahrm.hrms.DTO.request.LogoutRequest;
 import com.bananahrm.hrms.DTO.response.LoginResponse;
 import com.bananahrm.hrms.DTO.response.ResponseObject;
 import com.bananahrm.hrms.Entity.Token;
@@ -30,7 +31,7 @@ public class AuthController {
     private final IAuthRedisService iAuthRedisService;
 
     @PostMapping("/login")
-    public ResponseObject<LoginResponse> postMethodName(@RequestBody LoginRequest request) throws Exception {
+    public ResponseObject<LoginResponse> handleLogin(@RequestBody LoginRequest request) throws Exception{
         try {
             if(iAuthRedisService.checkLoginFail(request.getUsername())){
                 throw new AppException(ErrorCode.LOGIN_LIMIT);
@@ -51,6 +52,18 @@ public class AuthController {
                         .build();     
         } catch (Exception e) {
             iAuthRedisService.handleLoginFail(request.getUsername());
+            throw e;
+        }
+    }
+
+
+    @PostMapping("/logout")
+    public ResponseObject<String> handleLogout(@RequestBody LogoutRequest request) throws Exception{
+        try {
+            tokenService.logout(request.getAccessToken(), request.getRefreshToken());
+            
+            return ResponseObject.<String>builder().status(200).message("Logout success.").build();
+        } catch (Exception e) {
             throw e;
         }
     }

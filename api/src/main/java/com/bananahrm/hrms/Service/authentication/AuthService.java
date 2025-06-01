@@ -39,4 +39,9 @@ public class AuthService implements IAuthService{
         return token;
     }
 
+    @Override
+    public void logout(String accessToken, String refreshToken) throws Exception {
+        
+    }
+
 }
