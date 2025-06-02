@@ -1,9 +1,9 @@
 import axios, { AxiosResponse } from "axios";
 import { LangVersion, LoginRequest } from "./interfaces";
 import { UUID } from "crypto";
-import dotenv from 'dotenv';
-
+import * as dotenv from 'dotenv';
 dotenv.config();
+
 
 const BASE_URL = process.env.BASE_URL;
 
