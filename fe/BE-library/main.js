@@ -35,21 +35,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-<<<<<<< HEAD
 exports.__esModule = true;
-exports.AuthOperation = void 0;
-var axios_1 = require("axios");
-var interfaces_1 = require("./interfaces");
-var dotenv_1 = require("dotenv");
-dotenv_1["default"].config();
-=======
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthOperation = void 0;
 var axios_1 = require("axios");
 var interfaces_1 = require("./interfaces");
 var dotenv = require("dotenv");
 dotenv.config();
->>>>>>> e4e486ba6b6e2b6d6b157c04c8fbc9b19f0816dd
 var BASE_URL = process.env.BASE_URL;
 var AuthOperation = /** @class */ (function () {
     function AuthOperation() {
@@ -99,25 +90,16 @@ var AuthOperation = /** @class */ (function () {
     // 	}
     // }
     AuthOperation.prototype.login = function (payload) {
-<<<<<<< HEAD
         var _a, _b;
-=======
->>>>>>> e4e486ba6b6e2b6d6b157c04c8fbc9b19f0816dd
         return __awaiter(this, void 0, void 0, function () {
             var response, error_1;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
-<<<<<<< HEAD
                         return [4 /*yield*/, axios_1["default"].post("".concat(this.baseUrl, "/login"), payload, {
                                 withCredentials: true,
                                 validateStatus: function (status) { return status >= 200 && status <= 500; }
-=======
-                        return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/login"), payload, {
-                                withCredentials: true,
-                                validateStatus: function (status) { return status >= 200 && status <= 500; },
->>>>>>> e4e486ba6b6e2b6d6b157c04c8fbc9b19f0816dd
                             })];
                     case 1:
                         response = _c.sent();
