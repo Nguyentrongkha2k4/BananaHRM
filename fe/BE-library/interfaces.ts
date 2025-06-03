@@ -1,8 +1,5 @@
 import { UUID } from 'crypto';
 
-
-
-
 export interface LoginRequest{
     username: string,
     password: string
