@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/department")
+@RequestMapping("/departments")
 @RequiredArgsConstructor
 public class DepartmentController {
 
     private final IDepartmentService iDepartmentService;
     private final DepartmentMapper departmentMapper;
     
-    @PostMapping("/add")
+    @PostMapping("")
     public ResponseObject<DepartmentResponse> handleAddDepartment(@RequestBody DepartmentRequest request) throws Exception {
         try{
             Department department = iDepartmentService.createDepartment(request.getName());
@@ -34,7 +34,7 @@ public class DepartmentController {
         }
     }
 
-    @GetMapping("/get-all")
+    @GetMapping("")
     public ResponseObject<List<DepartmentResponse>> handleGetAllDepartment() throws Exception {
         try{
             List<Department> lDepartments = iDepartmentService.getAllDepartment();
@@ -63,7 +63,7 @@ public class DepartmentController {
         }
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public ResponseObject<DepartmentResponse> handleUpdateDepartment(@PathVariable String id, @RequestBody DepartmentRequest request) throws Exception{
         try{
             Department Department = iDepartmentService.updateDepartment(Long.parseLong(id), request.getName());
@@ -78,7 +78,7 @@ public class DepartmentController {
         }
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseObject<DepartmentResponse> handleDeleteDepartment(@PathVariable String id) throws Exception{
         try{
             Department Department = iDepartmentService.deleteDepartment(Long.parseLong(id));

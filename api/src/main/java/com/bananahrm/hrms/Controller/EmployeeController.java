@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/employee")
+@RequestMapping("/employees")
 public class EmployeeController {
     private final IEmployeeService iEmployeeService;
     private final IUserService iUserService;
@@ -25,7 +25,7 @@ public class EmployeeController {
     private final IDepartmentService iDepartmentService;
 
 
-    @PostMapping("/add")
+    @PostMapping("")
     public ResponseObject<AccountResponse> handleAddEmployee(@RequestBody EmployeeCreationRequest request) throws Exception {
         try{
             Employee employee = iEmployeeService.createEmployee(request);

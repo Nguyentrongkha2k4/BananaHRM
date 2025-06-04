@@ -16,13 +16,13 @@ import java.util.stream.Collectors;
 
 
 @RestController
-@RequestMapping("/title")
+@RequestMapping("/titles")
 @RequiredArgsConstructor
 public class JobTitleController {
     private final IJobTitleService iJobTitleService;
     private final JobTitleMapper jobTitleMapper;
 
-    @PostMapping("/add")
+    @PostMapping("")
     public ResponseObject<JobTitleResponse> handleAddJobTitle(@RequestBody JobTitleRequest request) throws Exception{
         try{
             JobTitle jobTitle = iJobTitleService.createJobTitle(request.getTitle());
@@ -34,7 +34,7 @@ public class JobTitleController {
         }
     }
 
-    @GetMapping("/get-all")
+    @GetMapping("")
     public ResponseObject<List<JobTitleResponse>> handleGetAllJobTitle() throws Exception {
         try{
             List<JobTitle> lJobTitles = iJobTitleService.getAllJobTitles();
@@ -63,7 +63,7 @@ public class JobTitleController {
         }
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public ResponseObject<JobTitleResponse> handleUpdateJobTitle(@PathVariable String id, @RequestBody JobTitleRequest request) throws Exception{
         try{
             JobTitle jobTitle = iJobTitleService.updateJobTitle(Long.parseLong(id), request.getTitle());
@@ -78,7 +78,7 @@ public class JobTitleController {
         }
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseObject<JobTitleResponse> handleDeleteJobTitle(@PathVariable String id) throws Exception{
         try{
             JobTitle jobTitle = iJobTitleService.deleteJobTitle(Long.parseLong(id));
