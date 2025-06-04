@@ -1,5 +1,7 @@
 package com.bananahrm.hrms.Service.employee;
 
+import com.bananahrm.hrms.Exception.AppException;
+import com.bananahrm.hrms.Exception.ErrorCode;
 import org.springframework.stereotype.Service;
 
 import com.bananahrm.hrms.DTO.request.EmployeeCreationRequest;
@@ -11,6 +13,8 @@ import com.bananahrm.hrms.Service.department.IDepartmentService;
 import com.bananahrm.hrms.Service.jobTitle.IJobTitleService;
 
 import lombok.RequiredArgsConstructor;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -40,6 +44,16 @@ public class EmployeeService implements IEmployeeService{
                                 .build();
 
         return employeeRepository.save(employee);
+    }
+
+    @Override
+    public Employee getEmployeeById(long id) throws Exception {
+        Optional<Employee> employeeOptional = employeeRepository.findById(id);
+        if (employeeOptional.isEmpty()){
+            throw new AppException(ErrorCode.EMPLOYEE_NOT_EXISTS);
+        }
+
+        return employeeOptional.get();
     }
 
 }

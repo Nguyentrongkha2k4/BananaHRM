@@ -71,10 +71,33 @@ public class UserService implements IUserService{
         return AccountResponse.builder().username(maNhanVien).password(randomPassword).build();
     }
 
+    @Override
+    public String getUsernameByEmployeeId(Long id) throws Exception {
+        Optional<User> user = userRepository.findByEmployeeId(id);
+        if(user.isEmpty()){
+            throw new AppException(ErrorCode.EMPLOYEE_ID_INVALID);
+        }
+
+        User findUser = user.get();
+
+        return findUser.getMaNhanVien();
+    }
+
+    @Override
+    public String getRoleByEmployeeId(Long id) throws Exception {
+        Optional<User> user = userRepository.findByEmployeeId(id);
+        if(user.isEmpty()){
+            throw new AppException(ErrorCode.EMPLOYEE_ID_INVALID);
+        }
+
+        User findUser = user.get();
+
+        return findUser.getRole();
+    }
 
 
     @Override
-    public User createUser(String username, String password, Employee employee) throws Exception {
+    public void createUser(String username, String password, Employee employee) throws Exception {
         if (userRepository.existsByMaNhanVien(username)){
             throw new AppException(ErrorCode.USERNAME_ALREADY_EXIST);
         }
@@ -86,7 +109,7 @@ public class UserService implements IUserService{
                             .role("EMP")
                             .build();
 
-        return userRepository.save(newAccount);
+        userRepository.save(newAccount);
     }
     
 }

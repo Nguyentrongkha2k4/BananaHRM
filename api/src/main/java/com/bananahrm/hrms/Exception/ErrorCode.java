@@ -20,6 +20,14 @@ public enum ErrorCode {
     STATUS_INVALID("Status is invalid."),
     IDENTIFY_ERROR("Identify is invalid format."),
     LOGIN_LIMIT("Login is limited"),
+    EMPLOYEE_ID_INVALID("Employee account is invalid"),
+    EMPLOYEE_NOT_EXISTS("Employee is not exists."),
+    TITLE_EMPTY("Title can not be empty."),
+    TITLE_EXIST("Title name has been exists."),
+    DEPARTMENT_EMPTY("Department name can not be empty."),
+    DEPARTMENT_EXIST("Department name has been exists."),
+    TITLE_NOT_FOUND("Title is not founded."),
+    DEPARTMENT_NOT_FOUND("Department is not founded.")
     ;
     private String message;
 
