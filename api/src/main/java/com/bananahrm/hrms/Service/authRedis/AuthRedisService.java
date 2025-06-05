@@ -82,7 +82,7 @@ public class AuthRedisService implements IAuthRedisService{
     @Override
     public void handleLoginFail(String username) throws Exception{
         String key = "login_fail:" + username;
-        Long count = redisTemplate.opsForValue().increment(key);
+        redisTemplate.opsForValue().increment(key);
 
         // set ttl time when login fail and initializing
         // if (count != null && count == 1){

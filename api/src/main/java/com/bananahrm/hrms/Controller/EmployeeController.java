@@ -3,7 +3,6 @@ package com.bananahrm.hrms.Controller;
 import com.bananahrm.hrms.DTO.response.*;
 import com.bananahrm.hrms.Entity.Department;
 import com.bananahrm.hrms.Entity.JobTitle;
-import com.bananahrm.hrms.Entity.User;
 import com.bananahrm.hrms.Service.department.IDepartmentService;
 import com.bananahrm.hrms.Service.jobTitle.IJobTitleService;
 import org.springframework.web.bind.annotation.*;

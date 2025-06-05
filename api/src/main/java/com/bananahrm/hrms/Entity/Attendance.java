@@ -1,7 +1,6 @@
 package com.bananahrm.hrms.Entity;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Date;
 
 import jakarta.persistence.Column;
