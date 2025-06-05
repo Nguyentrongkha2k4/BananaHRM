@@ -9,6 +9,7 @@ import com.bananahrm.hrms.Entity.Department;
 
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -40,6 +41,27 @@ public class DepartmentService implements IDepartmentService{
         }
 
         return departmentOptional.get();
+    }
+
+    @Override
+    public List<Department> getAllDepartment() throws Exception {
+        return departmentRepository.findAll();
+    }
+
+    @Override
+    public Department updateDepartment(Long id, String name) throws Exception {
+        Department department = this.getDepartmentById(id);
+        department.setName(name);
+
+        return departmentRepository.save(department);
+    }
+
+    @Override
+    public Department deleteDepartment(Long id) throws Exception {
+        Department department = this.getDepartmentById(id);
+        departmentRepository.delete(department);
+
+        return department;
     }
 
 }

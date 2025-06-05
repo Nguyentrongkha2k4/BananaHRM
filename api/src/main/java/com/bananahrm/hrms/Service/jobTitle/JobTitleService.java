@@ -9,6 +9,7 @@ import com.bananahrm.hrms.Entity.JobTitle;
 
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -41,6 +42,28 @@ public class JobTitleService implements IJobTitleService{
         }
 
         return jobTitleOptional.get();
+    }
+
+    @Override
+    public List<JobTitle> getAllJobTitles() throws Exception {
+        return jobTitleRepository.findAll();
+    }
+
+    @Override
+    public JobTitle updateJobTitle(Long id, String title) throws Exception {
+        JobTitle jobTitle = this.getTitleById(id);
+
+        jobTitle.setTitle(title);
+
+        return jobTitleRepository.save(jobTitle);
+    }
+
+    @Override
+    public JobTitle deleteJobTitle(Long id) throws Exception {
+        JobTitle jobTitle = this.getTitleById(id);
+        jobTitleRepository.delete(jobTitle);
+
+        return jobTitle;
     }
 
 }
