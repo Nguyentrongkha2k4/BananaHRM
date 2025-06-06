@@ -111,5 +111,15 @@ public class UserService implements IUserService{
 
         userRepository.save(newAccount);
     }
-    
+
+    @Override
+    public User getUser(Long id) throws Exception {
+        Optional<User> user = userRepository.findByEmployeeId(id);
+        if(user.isEmpty() || user.get().getEmployeeId() == null){
+            throw new AppException(ErrorCode.EMPLOYEE_ID_INVALID);
+        }
+
+        return user.get();
+    }
+
 }

@@ -27,6 +27,9 @@ public class LeaveRequest {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     Long id;
 
+    @Column(name = "approveBy")
+    Long updateBy;
+
     @Column(name="employee_id")
     Long employeeId;
 
@@ -42,5 +45,5 @@ public class LeaveRequest {
     String reason;
 
     // pending or success
-    String status;
+    String status = "pending";
 }

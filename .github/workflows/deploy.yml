@@ -47,6 +47,14 @@ jobs:
             builder: ${{ steps.buildx.outputs.name }}
             push: true
             tags: ${{ secrets.DOCKERHUB_USERNAME }}/bananahrm:latest
+        # - name: Build and push FE image
+        #   uses: docker/build-push-action@v6
+        #   with:
+        #     context: ./fe
+        #     file: ./fe/Dockerfile
+        #     builder: ${{ steps.buildx.outputs.name }}
+        #     push: true
+        #     tags: ${{ secrets.DOCKERHUB_USERNAME }}/hrm-fe:latest
         # Step 5: Redeploy on Koyeb using API key
         - name: Redeploy on Koyeb
           run: |

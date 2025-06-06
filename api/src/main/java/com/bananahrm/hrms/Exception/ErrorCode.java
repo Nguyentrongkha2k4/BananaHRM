@@ -27,7 +27,9 @@ public enum ErrorCode {
     DEPARTMENT_EMPTY("Department name can not be empty."),
     DEPARTMENT_EXIST("Department name has been exists."),
     TITLE_NOT_FOUND("Title is not founded."),
-    DEPARTMENT_NOT_FOUND("Department is not founded.")
+    DEPARTMENT_NOT_FOUND("Department is not founded."),
+    LEAVE_REQUEST_NOT_FOUND("Leave request is not founded."),
+    LEAVE_REQUEST_INVALID("Leave request is invalid."),
     ;
     private String message;
 
