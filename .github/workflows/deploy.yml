@@ -43,7 +43,7 @@ jobs:
           id: docker_build
           with:
             context: ./api
-            file: ./Dockerfile
+            file: ./api/Dockerfile
             builder: ${{ steps.buildx.outputs.name }}
             push: true
             tags: ${{ secrets.DOCKERHUB_USERNAME }}/bananahrm:latest
