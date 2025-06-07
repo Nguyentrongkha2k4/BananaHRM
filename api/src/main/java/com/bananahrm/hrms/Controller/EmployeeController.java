@@ -5,6 +5,7 @@ import com.bananahrm.hrms.Entity.Department;
 import com.bananahrm.hrms.Entity.JobTitle;
 import com.bananahrm.hrms.Service.department.IDepartmentService;
 import com.bananahrm.hrms.Service.jobTitle.IJobTitleService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import com.bananahrm.hrms.DTO.request.EmployeeCreationRequest;
@@ -25,6 +26,7 @@ public class EmployeeController {
     private final IDepartmentService iDepartmentService;
 
 
+//    @PreAuthorize("hasRole('ADMIN') or hasRole('HR')")
     @PostMapping("")
     public ResponseObject<AccountResponse> handleAddEmployee(@RequestBody EmployeeCreationRequest request) throws Exception {
         try{

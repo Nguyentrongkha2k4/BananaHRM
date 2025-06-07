@@ -11,6 +11,7 @@ import com.bananahrm.hrms.mapper.LeaveRequestMapper;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
@@ -86,6 +87,7 @@ public class LeaveRequestController {
         }
     }
 
+//    @PreAuthorize("hasRole('ADMIN') or hasRole('HR')")
     @PutMapping("/approve/{id}")
     public ResponseObject<LeaveRequestResponse> handleApproveLeaveRequest(@PathVariable Long id) throws Exception {
         try{
@@ -104,6 +106,7 @@ public class LeaveRequestController {
         }
     }
 
+//    @PreAuthorize("hasRole('ADMIN') or hasRole('HR')")
     @PutMapping("/reject/{id}")
     public ResponseObject<LeaveRequestResponse> handleRejectLeaveRequest(@PathVariable Long id) throws Exception {
         try{

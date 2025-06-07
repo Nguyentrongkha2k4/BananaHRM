@@ -6,4 +6,5 @@ import com.bananahrm.hrms.Entity.LeaveType;
 
 public interface LeaveTypeRepository extends JpaRepository<LeaveType, Long>{
 
+    boolean existsLeaveTypesByName(String name);
 }

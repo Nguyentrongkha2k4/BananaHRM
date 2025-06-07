@@ -30,6 +30,8 @@ public enum ErrorCode {
     DEPARTMENT_NOT_FOUND("Department is not founded."),
     LEAVE_REQUEST_NOT_FOUND("Leave request is not founded."),
     LEAVE_REQUEST_INVALID("Leave request is invalid."),
+    LEAVE_TYPE_EXIST("Leave type has been exists."),
+    LEAVE_TYPE_NOT_FOUND("Leave type is not founded."),
     ;
     private String message;
 
