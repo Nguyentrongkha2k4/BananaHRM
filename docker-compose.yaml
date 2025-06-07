@@ -8,20 +8,20 @@ services:
       - "8080:8080"
     env_file:
       - ./api/.env
-    restart: always
+    restart: unless-stopped
     networks:
-      - bananahrm-networks
+      - bananahrm-net
 
   redis-container:
     image: docker.io/redis:7.2.3
     container_name: redis-container
-    restart: always
+    restart: unless-stopped
     ports:
       - "6379:6379"
     volumes:
       - ./redis-data:/data
     networks:
-      - bananahrm-networks
+      - bananahrm-net
 
   fe-bananahrm:
     build:
@@ -32,9 +32,22 @@ services:
       - "3000:3000"
     env_file:
       - ./fe/.env
-    restart: always
+    restart: unless-stopped
     networks:
-      - bananahrm-networks
+      - bananahrm-net
+
+  # mysql-container:
+  #   image: mysql:9
+  #   ports:
+  #     - 3307:3306
+  #   volumes:
+  #     - ./mysql_data:/var/lib/mysql
+  #   container_name: mysql-container
+  #   restart: unless-stopped
+  #   env_file:
+  #     - ./.env
+  #   networks:
+  #     - bananahrm-net
 networks:
-  bananahrm-networks:
+  bananahrm-net:
     driver: bridge
