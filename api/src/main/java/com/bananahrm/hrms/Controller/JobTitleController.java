@@ -1,18 +1,24 @@
 package com.bananahrm.hrms.Controller;
 
+import java.util.List;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.bananahrm.hrms.DTO.request.JobTitleRequest;
 import com.bananahrm.hrms.DTO.response.JobTitleResponse;
 import com.bananahrm.hrms.DTO.response.ResponseObject;
 import com.bananahrm.hrms.Entity.JobTitle;
 import com.bananahrm.hrms.Service.jobTitle.IJobTitleService;
 import com.bananahrm.hrms.mapper.JobTitleMapper;
-import jakarta.websocket.server.PathParam;
-import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
-import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
 
 
 @RestController
