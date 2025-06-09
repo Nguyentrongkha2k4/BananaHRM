@@ -1,5 +1,6 @@
 package com.bananahrm.hrms.Controller;
 
+import com.bananahrm.hrms.DTO.request.ForgotPassRequest;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthController {
-    private final IAuthService authService;
+    private final IAuthService iAuthService;
     private final ITokenService tokenService;
     private final IUserService userService;
     private final IAuthRedisService iAuthRedisService;
@@ -36,7 +37,7 @@ public class AuthController {
             if(iAuthRedisService.checkLoginFail(request.getUsername())){
                 throw new AppException(ErrorCode.LOGIN_LIMIT);
             }
-            String token = authService.login(request.getUsername(), request.getPassword());
+            String token = iAuthService.login(request.getUsername(), request.getPassword());
             
             User user = userService.getUserByUsername(request.getUsername());
 
@@ -63,6 +64,20 @@ public class AuthController {
             tokenService.logout(request.getAccessToken(), request.getRefreshToken());
             
             return ResponseObject.<String>builder().status(200).message("Logout success.").build();
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    @PostMapping("/forgot-password")
+    public ResponseObject<Void> handleForgotPass(@RequestBody ForgotPassRequest request) throws Exception{
+        try{
+            iAuthService.getRandomCode(request.getEmail());
+
+            return ResponseObject.<Void>builder()
+                    .status(200)
+                    .message("Sending random code to email.")
+                    .build();
         } catch (Exception e) {
             throw e;
         }

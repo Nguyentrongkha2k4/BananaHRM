@@ -56,6 +56,7 @@ public class Employee {
     @Pattern(regexp = "[0-9]*", message = "IDENTIFY_ERROR")
     String citizenId;
 
+    @Column(unique = true)
     @Email(message="EMAIL_INVALID")
     String email;
 
