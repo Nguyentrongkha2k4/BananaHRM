@@ -21,6 +21,6 @@ public class EmployeeResponse {
     String address;
     String status;
     String role;
-    JobTitleResponse jobTitleResponse;
-    DepartmentResponse departmentResponse;
+    Long jobTitleId;
+    Long departmentId;
 }

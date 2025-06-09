@@ -14,6 +14,7 @@ import com.bananahrm.hrms.Service.jobTitle.IJobTitleService;
 
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -30,7 +31,13 @@ public class EmployeeService implements IEmployeeService{
         
         Department department = iDepartmentService.getDepartmentById(request.getDepartmentId());
 
+        Employee supervisor = this.getEmployeeById(request.getSupervisorId());
+
+        Employee manager = this.getEmployeeById(request.getManagerId());
+
         Employee employee = Employee.builder()
+                                .supervisorId(supervisor.getId())
+                                .managerId(manager.getId())
                                 .jobTitleId(jobTitle.getId())
                                 .departmentId(department.getId())
                                 .citizenId(request.getCitizenId())
@@ -54,6 +61,41 @@ public class EmployeeService implements IEmployeeService{
         }
 
         return employeeOptional.get();
+    }
+
+    @Override
+    public List<Employee> getAllEmployees() throws Exception {
+        return employeeRepository.findAll();
+    }
+
+    @Override
+    public Employee updateEmployee(long id, EmployeeCreationRequest request) throws Exception {
+        Employee oldEmployee = this.getEmployeeById(id);
+        JobTitle jobTitle = iJobTitleService.getTitleById(request.getJobTitleId());
+        Department department = iDepartmentService.getDepartmentById(request.getDepartmentId());
+        Employee supervisor = this.getEmployeeById(request.getSupervisorId());
+        Employee manager = this.getEmployeeById(request.getManagerId());
+
+        oldEmployee.setFirstName(request.getFirstName());
+        oldEmployee.setLastName(request.getLastName());
+        oldEmployee.setPhone(request.getPhone());
+        oldEmployee.setEmail(request.getEmail());
+        oldEmployee.setAddress(request.getAddress());
+        oldEmployee.setDob(request.getDob());
+        oldEmployee.setJobTitleId(jobTitle.getId());
+        oldEmployee.setManagerId(manager.getId());
+        oldEmployee.setDepartmentId(department.getId());
+        oldEmployee.setCitizenId(request.getCitizenId());
+        oldEmployee.setSupervisorId(supervisor.getId());
+        oldEmployee.setStatus(request.getStatus());
+
+        return employeeRepository.save(oldEmployee);
+
+    }
+
+    @Override
+    public void deleteEmployee(long id) throws Exception {
+
     }
 
 }

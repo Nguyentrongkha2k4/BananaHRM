@@ -37,6 +37,12 @@ public class Employee {
     @Column(name="department_id")
     Long departmentId;
 
+    @Column(name="supervisor_id")
+    Long supervisorId;
+
+    @Column(name = "manager_id")
+    Long managerId;
+
     @Column(name="last_name")
     String lastName;
 

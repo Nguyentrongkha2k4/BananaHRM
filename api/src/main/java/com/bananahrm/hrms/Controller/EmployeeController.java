@@ -5,6 +5,7 @@ import com.bananahrm.hrms.Entity.Department;
 import com.bananahrm.hrms.Entity.JobTitle;
 import com.bananahrm.hrms.Service.department.IDepartmentService;
 import com.bananahrm.hrms.Service.jobTitle.IJobTitleService;
+import com.bananahrm.hrms.mapper.EmployeeMapper;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,10 @@ import com.bananahrm.hrms.Service.user.IUserService;
 
 import lombok.RequiredArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 @RestController
 @RequiredArgsConstructor
@@ -24,7 +29,7 @@ public class EmployeeController {
     private final IUserService iUserService;
     private final IJobTitleService iJobTitleService;
     private final IDepartmentService iDepartmentService;
-
+    private final EmployeeMapper employeeMapper;
 
 //    @PreAuthorize("hasRole('ADMIN') or hasRole('HR')")
     @PostMapping("")
@@ -53,24 +58,61 @@ public class EmployeeController {
             String maNhanVien = iUserService.getUsernameByEmployeeId(employee.getId());
             String role = iUserService.getRoleByEmployeeId(employee.getId());
 
-            EmployeeResponse employeeResponse = EmployeeResponse.builder()
-                    .dob(employee.getDob())
-                    .departmentResponse(DepartmentResponse.builder().id(department.getId()).name(department.getName()).build())
-                    .jobTitleResponse(JobTitleResponse.builder().id(jobTitle.getId()).title(jobTitle.getTitle()).build())
-                    .phone(employee.getPhone())
-                    .email(employee.getEmail())
-                    .maNhanVien(maNhanVien)
-                    .firstName(employee.getFirstName())
-                    .lastName(employee.getLastName())
-                    .address(employee.getAddress())
-                    .citizenId(employee.getCitizenId())
-                    .role(role)
-                    .build();
+            EmployeeResponse employeeResponse = employeeMapper.toDTO(employee);
+
+            employeeResponse.setRole(role);
+            employeeResponse.setMaNhanVien(maNhanVien);
 
             return ResponseObject.<EmployeeResponse>builder()
                     .status(200)
                     .message("get user with id: " + id + " Successful")
                     .data(employeeResponse)
+                    .build();
+        }catch (Exception e){
+            throw e;
+        }
+    }
+
+    @GetMapping("")
+    public ResponseObject<List<EmployeeResponse>> getAllEmployees() throws Exception {
+        try{
+            List<Employee> employees = iEmployeeService.getAllEmployees();
+
+            List<EmployeeResponse> employeesResponse = employees.stream().map(employeeMapper::toDTO).toList();
+
+            return ResponseObject.<List<EmployeeResponse>>builder()
+                    .status(200)
+                    .message("get all employees")
+                    .data(employeesResponse)
+                    .build();
+        }catch (Exception e){
+            throw e;
+        }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseObject<EmployeeResponse> updateEmployee(@PathVariable Long id, @RequestBody EmployeeCreationRequest request) throws Exception {
+        try{
+            Employee employee = iEmployeeService.updateEmployee(id, request);
+
+            return ResponseObject.<EmployeeResponse>builder()
+                    .status(200)
+                    .message("update employee")
+                    .data(employeeMapper.toDTO(employee))
+                    .build();
+        }catch (Exception e){
+            throw e;
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseObject<Void> deleteEmployee(@PathVariable Long id) throws Exception {
+        try{
+            iEmployeeService.deleteEmployee(id);
+
+            return ResponseObject.<Void>builder()
+                    .status(200)
+                    .message("delete employee")
                     .build();
         }catch (Exception e){
             throw e;

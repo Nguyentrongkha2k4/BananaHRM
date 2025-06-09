@@ -26,7 +26,11 @@ public class EmployeeCreationRequest {
     String lastName;
 
     String firstName;
-    
+
+    Long supervisorId;
+
+    Long managerId;
+
     @Size(min = 12, max = 12, message = "IDENTIFY_ERROR")
     @Pattern(regexp = "[0-9]*", message = "IDENTIFY_ERROR")
     String citizenId;
