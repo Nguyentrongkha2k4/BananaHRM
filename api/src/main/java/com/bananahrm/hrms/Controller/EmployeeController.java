@@ -92,7 +92,20 @@ public class EmployeeController {
         try{
             List<Employee> employees = iEmployeeService.getAllEmployees();
 
-            List<EmployeeResponse> employeesResponse = employees.stream().map(employeeMapper::toDTO).toList();
+            List<EmployeeResponse> employeesResponse = employees.stream().map(
+                    employee->{
+                        try{
+                            String maNhanVien = iUserService.getUsernameByEmployeeId(employee.getId());
+                            String role = iUserService.getRoleByEmployeeId(employee.getId());
+                            EmployeeResponse employeeResponse = employeeMapper.toDTO(employee);
+                            employeeResponse.setMaNhanVien(maNhanVien);
+                            employeeResponse.setRole(role);
+                            return employeeResponse;
+                        } catch (Exception e){
+                            return null;
+                        }
+                    }
+            ).toList();
 
             return ResponseObject.<List<EmployeeResponse>>builder()
                     .status(200)
