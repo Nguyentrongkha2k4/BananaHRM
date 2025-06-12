@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.bananahrm.hrms.Entity.Employee;
 import com.bananahrm.hrms.Rerpository.EmployeeRepository;
+import com.bananahrm.hrms.Service.authRedis.IAuthRedisService;
 import com.bananahrm.hrms.Service.user.IUserService;
 import com.bananahrm.hrms.Util.RandomPasswordGeneration;
 import com.bananahrm.hrms.kafka.dto.MailRequest;
@@ -30,6 +31,7 @@ public class AuthService implements IAuthService{
     private final EmployeeRepository employeeRepository;
     private final IUserService iUserService;
     private final MailProducer mailProducer;
+    private final IAuthRedisService iAuthRedisService;
 
 
     @Override
@@ -70,6 +72,9 @@ public class AuthService implements IAuthService{
 
         String subject = "Access Code";
         String randCode = RandomPasswordGeneration.generateRandomPassword(5);
+
+//        need save otp code to redis
+
         String body = "Hello " + userName + "!\n" + "Here is your code!\n" + randCode + "\n Sincerely";
 
         MailRequest mailRequest = MailRequest.builder()
